@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery UI Components</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <style>
+    /* Reset default margin and padding */
+      * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
+
+    /* Container styling */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Interactions section */
+    .interactions {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .draggable, .droppable, .resizable {
+      width: 150px;
+      height: 150px;
+      margin: 10px;
+      padding: 20px;
+      text-align: center;
+      line-height: 150px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .draggable {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .droppable {
+      width: 200px; /* Increased width */
+      height: 200px; /* Increased height */
+      background-color: #2196F3;
+      color: white;
+    }
+
+    .resizable {
+      background-color: #f44336;
+      color: white;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 20px;
+    }
+
+    /* Header styling */
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    /* Container styling */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Interactions section */
+    .interactions {
+      margin-bottom: 40px;
+    }
+
+    .interactions > div {
+      display: inline-block;
+    }
+
+    /* Widgets section */
+    .widgets {
+      margin-bottom: 40px;
+    }
+
+    .widgets input[type="text"],
+    .widgets #slider {
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 8px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    /* Effects section */
+    .effects {
+      text-align: center;
+    }
+
+    .effects button {
+      margin: 5px;
+      padding: 8px 16px;
+      border-radius: 3px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    .effects .effect-div {
+      margin-top: 20px;
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+      margin: 0 auto;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>jQuery UI Components</h1>
+
+    <div class="interactions">
+      <div class="draggable">Drag me!</div>
+      <div class="droppable">Drop here!</div>
+      <div class="resizable">Resize me!</div>
+      <div class="selectable">
+        <ul>
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+          <li>Item 4</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="widgets">
+      <div id="accordion">
+        <h3>Section 1</h3>
+        <div>
+          <p>Thanks For Reaching Out To Our Web Page</p>
+        </div>
+        <h3>Section 2</h3>
+        <div>
+          <p>Thanks for using our web 
+          </p>
+        </div>
+      </div>
+      <input type="text" id="autocomplete" placeholder="Autocomplete">
+      <input type="text" id="datepicker" placeholder="Datepicker">
+      <div id="slider"></div>
+    </div>
+
+    <div class="effects">
+      <button class="hideShow">Hide/Show</button>
+      <button class="explode">Explode</button>
+      <button class="fadeInOut">Fade In/Out</button>
+      <button class="colorAnimate">Color Animation</button>
+      <div class="effect-div"></div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Interactions
+      $('.draggable').draggable();
+      $('.droppable').droppable({
+        drop: function(event, ui) {
+          $(this).addClass("ui-state-highlight").find("p").html("Dropped!");
+        }
+      });
+      $('.resizable').resizable();
+      $('.selectable ul').selectable();
+
+      // Widgets
+      $("#accordion").accordion();
+      $("#autocomplete").autocomplete({
+        source: ["Option 1", "Option 2", "Option 3"]
+      });
+      $("#datepicker").datepicker();
+      $("#slider").slider();
+
+      // Effects
+      $(".hideShow").on("click", function() {
+        $(".effect-div").toggle("explode", { pieces: 16 }, 1000);
+      });
+      $(".explode").on("click", function() {
+        $(".effect-div").effect("explode", { pieces: 16 }, 1000);
+      });
+      $(".fadeInOut").on("click", function() {
+        $(".effect-div").fadeOut().fadeIn();
+      });
+      $(".colorAnimate").on("click", function() {
+        $(".effect-div").animate({ backgroundColor: "yellow", color: "blue" }, 1000);
+      });
+    });
+  </script>
+</body>
+</html>
